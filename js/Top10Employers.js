@@ -28,7 +28,7 @@ var svg = d3.select("div#vis1")
   { year: "2016", redDelicious: "19", mcintosh: "17", oranges: "5", pears: "7" },
 ];*/
 
-d3.csv("../data/top10cities.csv", function(error, data) {
+d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(error, data) {
 	data.forEach(function(d) {
     d.city = +d.city;
 	d.year2014 = +d.year2014;
