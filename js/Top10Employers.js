@@ -36,7 +36,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(erro
 	d.year2016 = +d.year2016;
 	});
 
-//var parse = d3.time.format("%Y").parse;
+var parse = d3.time.format("%Y").parse;
 
 
 // Transpose the data into layers
