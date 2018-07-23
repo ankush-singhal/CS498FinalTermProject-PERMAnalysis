@@ -42,7 +42,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(erro
 // Transpose the data into layers
 var dataset = d3.layout.stack()(["2014", "2015", "2016"].map(function(years) {
   return data.map(function(d) {
-    return {x: d.citi, y: +d[years]};
+    return {x: d.city, y: +d[years]};
   });
 }));
 
