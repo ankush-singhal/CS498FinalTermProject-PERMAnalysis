@@ -17,7 +17,7 @@ var colours = d3.scaleOrdinal()
     .range(["#377eb8", "#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8"]);
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-d3.csv("../data/us_perm_visas.xlsb", function(error, data) {
+d3.csv("/data/us_perm_visas.xlsb", function(error, data) {
       data.forEach(function(d) {
     d.case_number = +d.case_number;
 	console.log(d.case_number);
