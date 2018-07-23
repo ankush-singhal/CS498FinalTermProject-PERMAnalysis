@@ -151,3 +151,5 @@ tooltip.append("text")
   .style("text-anchor", "middle")
   .attr("font-size", "12px")
   .attr("font-weight", "bold");
+	
+});
