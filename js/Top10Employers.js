@@ -31,9 +31,9 @@ var svg = d3.select("div#vis1")
 d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(error, data) {
 	data.forEach(function(d) {
     d.city = +d.city;
-	d.year2014 = +d.year2014;
+	/*d.year2014 = +d.year2014;
 	d.year2015 = +d.year2015;
-	d.year2016 = +d.year2016;
+	d.year2016 = +d.year2016;*/
 	});
 
 var parse = d3.time.format("%Y").parse;
