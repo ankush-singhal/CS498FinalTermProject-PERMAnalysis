@@ -1,105 +1,148 @@
+
+// Setup svg using Bostock's margin convention
+
+var margin = {top: 20, right: 160, bottom: 35, left: 30};
+
+var width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
 var svg = d3.select("div#vis1")
   .append("svg")
-  .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 960 410")
-  .classed("svg-content", true);
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+/* Data in strings like it would be if imported from a csv */
+
+var data = [
+  { year: "2006", redDelicious: "10", mcintosh: "15", oranges: "9", pears: "6" },
+  { year: "2007", redDelicious: "12", mcintosh: "18", oranges: "9", pears: "4" },
+  { year: "2008", redDelicious: "05", mcintosh: "20", oranges: "8", pears: "2" },
+  { year: "2009", redDelicious: "01", mcintosh: "15", oranges: "5", pears: "4" },
+  { year: "2010", redDelicious: "02", mcintosh: "10", oranges: "4", pears: "2" },
+  { year: "2011", redDelicious: "03", mcintosh: "12", oranges: "6", pears: "3" },
+  { year: "2012", redDelicious: "04", mcintosh: "15", oranges: "8", pears: "1" },
+  { year: "2013", redDelicious: "06", mcintosh: "11", oranges: "9", pears: "4" },
+  { year: "2014", redDelicious: "10", mcintosh: "13", oranges: "9", pears: "5" },
+  { year: "2015", redDelicious: "16", mcintosh: "19", oranges: "6", pears: "9" },
+  { year: "2016", redDelicious: "19", mcintosh: "17", oranges: "5", pears: "7" },
+];
+
+var parse = d3.time.format("%Y").parse;
+
+
+// Transpose the data into layers
+var dataset = d3.layout.stack()(["redDelicious", "mcintosh", "oranges", "pears"].map(function(fruit) {
+  return data.map(function(d) {
+    return {x: parse(d.year), y: +d[fruit]};
+  });
+}));
+
+
+// Set x, y and colors
+var x = d3.scale.ordinal()
+  .domain(dataset[0].map(function(d) { return d.x; }))
+  .rangeRoundBands([10, width-10], 0.02);
+
+var y = d3.scale.linear()
+  .domain([0, d3.max(dataset, function(d) {  return d3.max(d, function(d) { return d.y0 + d.y; });  })])
+  .range([height, 0]);
+
+var colors = ["b33040", "#d25c4d", "#f2b447", "#d9d574"];
+
+
+// Define and draw axes
+var yAxis = d3.svg.axis()
+  .scale(y)
+  .orient("left")
+  .ticks(5)
+  .tickSize(-width, 0, 0)
+  .tickFormat( function(d) { return d } );
+
+var xAxis = d3.svg.axis()
+  .scale(x)
+  .orient("bottom")
+  .tickFormat(d3.time.format("%Y"));
+
+svg.append("g")
+  .attr("class", "y axis")
+  .call(yAxis);
+
+svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis);
+
+
+// Create groups for each series, rects for each segment 
+var groups = svg.selectAll("g.cost")
+  .data(dataset)
+  .enter().append("g")
+  .attr("class", "cost")
+  .style("fill", function(d, i) { return colors[i]; });
+
+var rect = groups.selectAll("rect")
+  .data(function(d) { return d; })
+  .enter()
+  .append("rect")
+  .attr("x", function(d) { return x(d.x); })
+  .attr("y", function(d) { return y(d.y0 + d.y); })
+  .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+  .attr("width", x.rangeBand())
+  .on("mouseover", function() { tooltip.style("display", null); })
+  .on("mouseout", function() { tooltip.style("display", "none"); })
+  .on("mousemove", function(d) {
+    var xPosition = d3.mouse(this)[0] - 15;
+    var yPosition = d3.mouse(this)[1] - 25;
+    tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+    tooltip.select("text").text(d.y);
+  });
+
+
+// Draw legend
+var legend = svg.selectAll(".legend")
+  .data(colors)
+  .enter().append("g")
+  .attr("class", "legend")
+  .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
  
-var margin = {top: 20, right: 20, bottom: 140, left:70},
-    width = 820,
-    height = 250;
-  
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.2),
-    y = d3.scaleLinear().rangeRound([height, 0]);
-  
-var colours = d3.scaleOrdinal()
-    .range(["#377eb8", "#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8","#377eb8"]);
-var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-d3.csv("/CS498FinalTermProject-PERMAnalysis/data/us_perm_visas.xlsb", function(error, data) {
-      data.forEach(function(d) {
-    d.case_number = +d.case_number;
-	console.log(d.case_number);
-    });
-    x.domain(data.map(function(d) { return d.title; }));
-    y.domain([0, d3.max(data, function(d) { return d.count; })]);
-    g.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
-		.selectAll("text")  
-            .style("text-anchor", "end")
-            .attr("dx", "-.5em")
-            .attr("dy", "-.90em")
-            .attr("transform", function(d) {
-                return "rotate(-45)" 
-                });
-    g.append("g")
-      	.attr("class", "axis axis--y")
-      	.call(d3.axisLeft(y).ticks(5).tickFormat(function(d) { return parseInt(d / 1000) + "K"; }))
-      .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", -50)
-        .attr("dy", "0.71em")
-        .attr("text-anchor", "center")
-        .attr("fill", "#5D6971")
-        .text("No of H1B Application - (K)");
-        
-    g.selectAll(".bar")
-      	.data(data)
-      .enter().append("rect")
-        .attr("x", function(d) { return x(d.title); })
-        .attr("y", function(d) { return y(d.count); })
-        .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.count); })
-        .attr("fill", function(d) { return colours(d.title); })
-		.on("mousemove", function(d){
-            tooltip
-              .style("left", d3.event.pageX - 50 + "px")
-              .style("top", d3.event.pageY - 70 + "px")
-              .style("display", "inline-block")
-              .html((d.title) + "<br>" + "No of H1B Application: " + (d.count));
-        })
-    		.on("mouseout", function(d){ tooltip.style("display", "none");});
-			
-    g.selectAll(".text")  		
-	  .data(data)
-	  .enter()
-	  .append("text")
-	  .attr("class","label")
-	  .attr("x", (function(d) { return x(d.title); }  ))
-	  .attr("y", function(d) { return y(d.count) - 40; })
-	  .attr("dy", ".75em")
-	  .attr("fill", "#E8336D")
-	  .style("font-size", "16px")
-	  .text(function(d) { return d.text; });
-	  
-	g.selectAll("line.arrow")
-        .data(data.filter(function(d) { return d.count == 6096; }))
-        .enter().append("line")
-            .attr("class", "arrow")
-            .attr("x1", function (d) {
-                return x(d.title)+x.bandwidth()/2;
-            })
-            .attr("x2", function (d) {
-                return x(d.title)+x.bandwidth()/2;
-            })
-            .attr("y2", function (d) {
-                return y(d.count) - 20;
-            })
-            .attr("y1", function (d) {
-                return y(d.count);
-            })
-            .attr("marker-end","url(#arrow)");
-			
-			
-    });
-	
-	g.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top/5))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "16px") 
-		.style("font-width", "bold")
-        .text("Companies Vs Application Count");
+legend.append("rect")
+  .attr("x", width - 18)
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", function(d, i) {return colors.slice().reverse()[i];});
+ 
+legend.append("text")
+  .attr("x", width + 5)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .style("text-anchor", "start")
+  .text(function(d, i) { 
+    switch (i) {
+      case 0: return "Anjou pears";
+      case 1: return "Naval oranges";
+      case 2: return "McIntosh apples";
+      case 3: return "Red Delicious apples";
+    }
+  });
+
+
+// Prep the tooltip bits, initial display is hidden
+var tooltip = svg.append("g")
+  .attr("class", "tooltip")
+  .style("display", "none");
+    
+tooltip.append("rect")
+  .attr("width", 30)
+  .attr("height", 20)
+  .attr("fill", "white")
+  .style("opacity", 0.5);
+
+tooltip.append("text")
+  .attr("x", 15)
+  .attr("dy", "1.2em")
+  .style("text-anchor", "middle")
+  .attr("font-size", "12px")
+  .attr("font-weight", "bold");
