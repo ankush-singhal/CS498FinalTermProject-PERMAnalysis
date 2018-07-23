@@ -1,38 +1,18 @@
-path {
-    stroke: black;
+  svg {
+    font: 10px sans-serif;
+    shape-rendering: crispEdges;
+  }
+
+  .axis path,
+  .axis line {
     fill: none;
-}
-line {
-    stroke: black;
-}
-path.marker {
-    fill: black;
-}
-rect:hover {
-  fill-opacity:0.5;
-}
+    stroke: #000;
+  }
  
-.axis {
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 12px;
-}
-.axis path,
-.axis line {
-	  fill: none;
-	  stroke: #000;
-	  shape-rendering: crispEdges;
-}
-.x.axis path {
-  display: none;
-}
-.toolTip {
-  position: absolute;
-  display: none;
-  min-width: 80px;
-  height: auto;
-  background: none repeat scroll 0 0 #ffffff;
-  border: 1px solid #000000;
-  padding: 14px;
-  text-align: center;
-  border-radius:5px;
-}
+  path.domain {
+    stroke: none;
+  }
+ 
+  .y .tick line {
+    stroke: #ddd;
+  }
