@@ -10,6 +10,8 @@ var svg = d3.select("div#vis1")
 var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var tooltip = d3.select("div#bar_container").append("div").attr("class", "tooltip");
+
 var x = d3.scaleBand()
     .rangeRound([0, width])
     .paddingInner(0.05)
@@ -99,7 +101,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.text(function(d) { return d; });
 	
 // Prep the tooltip bits, initial display is hidden
-var tooltip = svg.append("g")
+/*var tooltip = svg.append("g")
   .attr("class", "tooltip")
   .style("display", "none");
     
@@ -114,5 +116,5 @@ tooltip.append("text")
   .attr("dy", "1.2em")
   .style("text-anchor", "middle")
   .attr("font-size", "12px")
-  .attr("font-weight", "bold");
+  .attr("font-weight", "bold");*/
 });
