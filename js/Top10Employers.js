@@ -6,8 +6,8 @@ var width = 960 - margin.left - margin.right,
 var svg = d3.select("div#vis1")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+  .attr("height", height + margin.top + margin.bottom);
+var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x = d3.scaleBand()
