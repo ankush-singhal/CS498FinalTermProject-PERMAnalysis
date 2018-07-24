@@ -21,7 +21,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
-d3.csv("../data/top10cities.csv", function(d, i, columns) {
+d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;
