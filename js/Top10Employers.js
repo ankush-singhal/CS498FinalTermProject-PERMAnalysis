@@ -10,7 +10,8 @@ var svg = d3.select("div#vis1")
 var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var tooltip = d3.select("div#bar_container").append("div").attr("class", "tooltip");
+var tooltip = svg.append("g")
+	      .attr("class", "tooltip");
 
 var x = d3.scaleBand()
     .rangeRound([0, width])
