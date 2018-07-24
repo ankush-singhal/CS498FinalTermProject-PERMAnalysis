@@ -83,8 +83,8 @@ p {
 
 #bar_content {
   position: absolute;
-  top: 50%;
-  transform: translateY(-55%);
+  top: 15%;
+  transform: translateX(25%);
 }
 #bar_container {
   width: 1024px;
