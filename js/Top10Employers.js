@@ -52,8 +52,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
   	.on("mousemove", function(d) {
-		var xPosition = d3.mouse(this)[0] - 15;
-   		var yPosition = d3.mouse(this)[1] - 25;
+		//var xPosition = d3.mouse(this)[0] - 15;
+   		//var yPosition = d3.mouse(this)[1] - 25;
 	  	tooltip
 		.style("left", d3.event.pageX+ "px")
                 .style("top", d3.event.pageY+ "px")		
