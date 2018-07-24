@@ -63,7 +63,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("fill", "#000")
 		.attr("font-weight", "bold")
 		.attr("text-anchor", "start")
-		.text("Population");
+		.text("No. of Employees");
 
   var legend = g.append("g")
 		.attr("font-family", "sans-serif")
