@@ -38,28 +38,27 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   z.domain(keys);
 
   g.append("g")
-		.selectAll("g")
-		.data(d3.stack().keys(keys)(data))
-		.enter().append("g")
-		.attr("fill", function(d) { return z(d.key); })
-		.selectAll("rect")
-		.data(function(d) { return d; })
-		.enter().append("rect")
-		.attr("x", function(d) { return x(d.data.city); })
-		.attr("y", function(d) { return y(d[1]); })
-		.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-		.attr("width", x.bandwidth())
-		.on("mouseover", function() { tooltip.style("display", null); })
- 		.on("mouseout", function() { tooltip.style("display", "none"); })
-  		.on("mousemove", function(d) {
-	  		var xPosition = d3.mouse(this)[0] - 15;
-   			var yPosition = d3.mouse(this)[1] - 25;
-	  		tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")")
-	  			.style("display", "inline-block")
-			        .html("Employer City <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0])+"</b><br>Year: "+function(d) { return d; });
-	  		/*tooltip.select("text").text("Employer City: "+d.data.city"<br/> Number of Employees: "+d[1]);
-	  		tooltip.select("text").text("Employer City: "+d.data.city+"Number of Employees: "+(d[1]-d[0]));*/
-    			
+	.selectAll("g")
+	.data(d3.stack().keys(keys)(data))
+	.enter().append("g")
+	.attr("fill", function(d) { return z(d.key); })
+	.selectAll("rect")
+	.data(function(d) { return d; })
+	.enter().append("rect")
+	.attr("x", function(d) { return x(d.data.city); })
+	.attr("y", function(d) { return y(d[1]); })
+	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+	.attr("width", x.bandwidth())
+	.on("mouseover", function() { tooltip.style("display", null); })
+ 	.on("mouseout", function() { tooltip.style("display", "none"); })
+  	.on("mousemove", function(d) {
+		var xPosition = d3.mouse(this)[0] - 15;
+   		var yPosition = d3.mouse(this)[1] - 25;
+	  	var year = tooltip.select("text").text(function(d){return d;});
+	  	tooltip
+		.attr("transform", "translate(" + xPosition + "," + yPosition + ")")
+	  	.style("display", "inline-block")
+		.html("Employer City <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0])+"</b><br>Year: "+year);    			
 		});
 
   g.append("g")
