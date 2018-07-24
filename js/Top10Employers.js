@@ -56,7 +56,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	  		/*tooltip
              		 .style("display", "inline-block")
               		 .html("<b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1])+"</b>");*/
-	  		tooltip.select("text").text("Employer City: "+d.data.city"<br/> Number of Employees: "+(d[0] - d[1]));
+	  		tooltip.select("text").text("Employer City: "+d.data.city"<br/> Number of Employees: "+d[1]);
     			
 		});
 
