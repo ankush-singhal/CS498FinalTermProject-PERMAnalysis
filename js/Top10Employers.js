@@ -41,7 +41,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.selectAll("g")
 	.data(d3.stack().keys(keys)(data))
 	.enter().append("g")
-	.attr("fill", function(d) { return z(d.keys); })
+	.attr("fill", function(d) { return z(d.key); })
 	.selectAll("rect")
 	.data(function(d) { return d; })
 	.enter().append("rect")
@@ -54,11 +54,11 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   	.on("mousemove", function(d) {
 		var xPosition = d3.mouse(this)[0] - 15;
    		var yPosition = d3.mouse(this)[1] - 25;
-	  	//var year = tooltip.select("text").text(function(d){return d;});
 	  	tooltip
-		.attr("transform", "translate(" + xPosition + "," + yPosition + ")")
+		.style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 70 + "px")		
 	  	.style("display", "inline-block")
-		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0])+"</b><br>Year: "+ function(d){ return z(d.keys); });    			
+		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0])+"</b> });    			
 		});
 
   g.append("g")
@@ -98,22 +98,5 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("y", 9.5)
 		.attr("dy", "0.32em")
 		.text(function(d) { return d; });
-	
-// Prep the tooltip bits, initial display is hidden
-/*var tooltip = svg.append("g")
-  .attr("class", "tooltip")
-  .style("display", "none");
-    
-tooltip.append("rect")
-  .attr("width", 150)
-  .attr("height", 100)
-  .attr("fill", "white")
-  .style("opacity", 0.5);
 
-tooltip.append("text")
-  .attr("x", 15)
-  .attr("dy", "1.2em")
-  .style("text-anchor", "middle")
-  .attr("font-size", "12px")
-  .attr("font-weight", "bold");*/
 });
