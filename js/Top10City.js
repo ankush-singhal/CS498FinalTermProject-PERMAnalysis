@@ -11,7 +11,7 @@ var svg1 = d3.select("div#vis1")
  var g1 = svg1.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var tooltip = d3.select("div#vis1").append("div").attr("class", "tooltip");
+var tooltip1 = d3.select("div#vis1").append("div").attr("class", "tooltip");
 
 var x = d3.scaleBand()
     .rangeRound([0, width])
@@ -55,7 +55,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   	.on("mousemove", function(d) {
 		var xPosition = d3.mouse(this)[0] - 15;
    		var yPosition = d3.mouse(this)[1] - 25;
-	  	tooltip
+	  	tooltip1
 		.style("left",xPosition+ "px")
                 .style("top", yPosition+ "px")		
 	  	.style("display", "inline-block")
