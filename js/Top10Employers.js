@@ -3,14 +3,14 @@ var margin = {top: 20, right: 160, bottom: 35, left: 30};
 var width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var svg = d3.select("div#vis1")
+var svg = d3.select("div#vis2")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var tooltip = d3.select("div#vis1").append("div").attr("class", "tooltip");
+var tooltip = d3.select("div#vis2").append("div").attr("class", "tooltip");
 
 var x = d3.scaleBand()
     .rangeRound([0, width])
@@ -23,7 +23,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
-d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i, columns) {
+d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;
@@ -33,8 +33,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   var keys = data.columns.slice(1);
 
   data.sort(function(a, b) { return b.total - a.total; });
-  x.domain(data.map(function(d) { return d.city; }));
-  y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+  y.domain(data.map(function(d) { return d.employer; }));
+  x.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
 
   g.append("g")
@@ -45,33 +45,33 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.selectAll("rect")
 	.data(function(d) { return d; })
 	.enter().append("rect")
-	.attr("x", function(d) { return x(d.data.city); })
-	.attr("y", function(d) { return y(d[1]); })
+	.attr("y", function(d) { return x(d.data.employer); })
+	.attr("x", function(d) { return y(d[1]); })
 	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-	.attr("width", x.bandwidth())
+	.attr("width", y.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
   	.on("mousemove", function(d) {
-		var xPosition = d3.mouse(this)[0] - 15;
-   		var yPosition = d3.mouse(this)[1] - 25;
+		var yPosition = d3.mouse(this)[0] - 15;
+   		var xPosition = d3.mouse(this)[1] - 25;
 	  	tooltip
-		.style("left",xPosition+ "px")
-                .style("top", yPosition+ "px")		
+		.style("left",yPosition+ "px")
+                .style("top", xPosition+ "px")		
 	  	.style("display", "inline-block")
-		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
+		.html("Employer City: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
 
   g.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+		.call(d3.axisBottom(y));
 
   g.append("g")
 		.attr("class", "axis")
-		.call(d3.axisLeft(y).ticks(null, "s"))
+		.call(d3.axisLeft(x).ticks(null, "s"))
 		.append("text")
-		.attr("x", 2)
-		.attr("y", y(y.ticks().pop()) + 0.5)
+		.attr("y", 2)
+		.attr("x", x(x.ticks().pop()) + 0.5)
 		.attr("dy", "0.32em")
 		.attr("fill", "#000")
 		.attr("font-weight", "bold")
@@ -88,15 +88,15 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   legend.append("rect")
-		.attr("x", width - 19)
+		.attr("y", width - 19)
 		.attr("width", 19)
 		.attr("height", 19)
 		.attr("fill", z);
 
   legend.append("text")
-		.attr("x", width - 24)
-		.attr("y", 9.5)
-		.attr("dy", "0.32em")
+		.attr("y", width - 24)
+		.attr("x", 9.5)
+		.attr("dx", "0.32em")
 		.text(function(d) { return d; });
 
 });
