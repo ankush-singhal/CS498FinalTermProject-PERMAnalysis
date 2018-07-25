@@ -46,7 +46,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.data(function(d) { return d; })
 	.enter().append("rect")
 	.attr("x", function(d) { return x(d.data.employer); })
-	.attr("y", function(d) { return y(d[1])/1.5; })
+	.attr("y", function(d) { return y(d[1]); })
 	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
 	.attr("width", x.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
@@ -66,12 +66,13 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.attr("transform", "translate(0," + height + ")")
 		.call(d3.axisBottom(x))
 		.selectAll("text")  
-          	.style("text-anchor", "end")
+          	/*.style("text-anchor", "end")
             	.attr("dx", "-.3em")
             	.attr("dy", "-.50em")
             	.attr("transform", function(d) {
                 return "rotate(-45)" 
-                });
+                })*/
+		.call(wrap,x.bandwidth());
 
   g.append("g")
 		.attr("class", "axis")
@@ -107,3 +108,27 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.text(function(d) { return d; });
 
 });
+
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
