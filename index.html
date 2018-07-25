@@ -43,10 +43,10 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				verticalCentered: false,
-				anchors: ['intro', 'datavis', 'yelpdata', 'reviews', 'top25', 'checkins', 'findings', 'ref'],
+				anchors: ['intro', 'datavis', 'permpdata', 'top10city', 'top10employer', 'checkins', 'findings', 'ref'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['Introduction', '​About the Visualization', 'Yelp Dataset', 'Reviews Overview', 'Top 25 Categories', 'NV Checkins', 
+				navigationTooltips: ['Introduction', 'About the Visualization', 'PERM Dataset', 'Top 10 Cities', 'Top 10 Employers', 'NV Checkins', 
 					'Findings', 'References']
 			});});
 	</script>
@@ -102,10 +102,10 @@
 	<div class="section" id="survey">
 		<div id="content_div">
 			<h1>The PERM Dataset</h1>
-			<p>​​The restaurant business is an enormous industry where understanding your clients and their behavioural patterns may give prospective 
-				new restaurant owners a much needed head start. This interactive slideshow dives into the publicly available Yelp Academic Dataset 
-				which includes a large set of reviews client interactions across multiple industries and regions. We will focus on restaurants within 
-				the United States in order to better understand client interactions.</p><br />
+			<p>A permanent labor certification issued by the Department of Labor (DOL) which allows an employer to hire a foreign worker to work permanently  in the United States. 
+				The data used is the subset of Dataset available from Kaggle site Dataset mostly because the fields available was not relevant or had null values. 
+				The Dataset used covers 2014-2016 PERM data filed with DOL and includes information on the employer, position, wage offered, Job City, employee education, final decision etc.
+			</p><br />
 			<p>Assumptions are made in the positive correlation between the number of reviews and the popularity of a business. This is then tied with 
 				the assumption of the positive correlation between number of check-ins and the popularity of a business. By focusing on restaurants 
 				which have large number of reviews, check-ins and high star rating, we will be able to understand the type of restaurant to invest 
