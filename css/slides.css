@@ -76,24 +76,24 @@ p {
   margin: -20px;
 }*/
 
-#bar_title h1 {
+#hbar_title, #vbar_title  h1 {
   text-align: center;
 }
 
 
-#bar_content {
+#hbar_content, #vbar_content {
   position: absolute;
   top: 15%;
   transform: translateX(25%);
 }
-#bar_container {
+#hbar_container, #vbar_container{
   width: 1024px;
   height: 520px;
   margin: 30px; 
   float: left;
   width: 70%;
 }
-#bar_text {
+#hbar_text, vbar_text {
   margin: 30px;
   left: 5%;
   padding: 10px;
@@ -102,32 +102,8 @@ p {
   background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
   background: rgba(255, 255, 255, 0.7);	  
 }
-/* Top 25 Categories
-* --------------------------------------- */
-#zsb_title {
-  margin: 30px;
-}
-#zsb_content {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-55%);
-}
-#zsb_container {
-  width: 1024px;
-  height: 520px;
-  margin: 30px; 
-  float: left;
-  width: 70%;
-}
-#zsb_text {
-  margin: 30px;
-  left: 5%;
-  padding: 10px;
-  float: left;
-  width: 20%;
-  background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-  background: rgba(255, 255, 255, 0.7);	  
-}
+
+
 /* NV Check-ins
 * --------------------------------------- */
 #linechart {
