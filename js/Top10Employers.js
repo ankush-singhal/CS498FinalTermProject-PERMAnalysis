@@ -21,7 +21,7 @@ var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888"]);
+    .range(["#9bc7e4", "#8ed07f", "#f7ae54"]);
 
 d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
