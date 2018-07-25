@@ -1,7 +1,7 @@
 var margin = {top: 20, right: 160, bottom: 35, left: 30};
 
 var width = 960 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 500 - margin.top - margin.bottom;
 
 var svg = d3.select("div#vis2")
   .append("svg")
@@ -47,7 +47,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.enter().append("rect")
 	.attr("x", function(d) { return x(d.data.employer); })
 	.attr("y", function(d) { return y(d[1]); })
-	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+	.attr("height", function(d) { return y(d[0]) - y(d[1] - 100); })
 	.attr("width", x.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
