@@ -3,12 +3,12 @@ var margin = {top: 20, right: 160, bottom: 35, left: 30};
 var width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var svg = d3.select("div#vis1")
+var svg1 = d3.select("div#vis1")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
   
- var g1 = svg.append("g1")
+ var g1 = svg1.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var tooltip = d3.select("div#vis1").append("div").attr("class", "tooltip");
@@ -38,10 +38,10 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
 
-  g1.append("g1")
-	.selectAll("g1")
+  g1.append("g")
+	.selectAll("g")
 	.data(d3.stack().keys(keys)(data))
-	.enter().append("g1")
+	.enter().append("g")
 	.attr("fill", function(d) { return z(d.key); })
 	.selectAll("rect")
 	.data(function(d) { return d; })
@@ -62,12 +62,12 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
 
-  g1.append("g1")
+  g1.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(d3.axisBottom(x));
 
-  g1.append("g1")
+  g1.append("g")
 		.attr("class", "axis")
 		.call(d3.axisLeft(y).ticks(null, "s"))
 		.append("text")
@@ -79,7 +79,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("text-anchor", "start")
 		.text("No. of Employees");
 
-  var legend = g1.append("g1")
+  var legend = g1.append("g")
 		.attr("font-family", "sans-serif")
 		.attr("font-size", 10)
 		.attr("text-anchor", "end")
