@@ -93,7 +93,7 @@ p {
   float: left;
   width: 70%;
 }
-#hbar_text, vbar_text {
+#hbar_text, #vbar_text {
   margin: 30px;
   left: 5%;
   padding: 10px;
