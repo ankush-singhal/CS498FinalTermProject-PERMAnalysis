@@ -1,7 +1,7 @@
 var margin = {top: 20, right: 160, bottom: 35, left: 30};
 
 var width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 600 - margin.top - margin.bottom;
 
 var svg = d3.select("div#vis2")
   .append("svg")
@@ -67,8 +67,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.call(d3.axisBottom(x))
 		.selectAll("text")  
           	.style("text-anchor", "end")
-            	.attr("dx", "-.5em")
-            	.attr("dy", "-.90em")
+            	.attr("dx", "-.3em")
+            	.attr("dy", "-.50em")
             	.attr("transform", function(d) {
                 return "rotate(-45)" 
                 });
