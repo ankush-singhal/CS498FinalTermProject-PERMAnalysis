@@ -18,7 +18,7 @@ var x = d3.scaleBand()
     .align(0.1);
 
 var y = d3.scaleLinear()
-    .rangeRound([height, 0.8]);
+    .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
@@ -77,7 +77,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.attr("class", "axis")
 		.call(d3.axisLeft(y).ticks(null, "s"))
 		.append("text")
-		.attr("x", 2)
+		.attr("x", 1)
 		.attr("y", y(y.ticks().pop()) + 0.5)
 		.attr("dy", "0.32em")
 		.attr("fill", "#000")
