@@ -18,7 +18,7 @@ var x = d3.scaleBand()
     .align(0.1);
 
 var y = d3.scaleLinear()
-    .rangeRound([height, 0.4]);
+    .rangeRound([height, 0.8]);
 
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
