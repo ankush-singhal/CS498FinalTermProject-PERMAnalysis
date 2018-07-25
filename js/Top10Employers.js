@@ -18,7 +18,7 @@ var x = d3.scaleBand()
     .align(0.1);
 
 var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+    .rangeRound([height, 0.4]);
 
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
@@ -47,7 +47,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.enter().append("rect")
 	.attr("x", function(d) { return x(d.data.employer); })
 	.attr("y", function(d) { return y(d[1]); })
-	.attr("height", function(d) { return y(d[0]) - y(d[1] - 100); })
+	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
 	.attr("width", x.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
