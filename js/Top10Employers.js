@@ -12,12 +12,12 @@ var g = svg.append("g")
 
 var tooltip = d3.select("div#vis2").append("div").attr("class", "tooltip");
 
-var y = d3.scaleBand()
+var x = d3.scaleBand()
     .rangeRound([0, width])
     .paddingInner(0.05)
     .align(0.1);
 
-var x = d3.scaleLinear()
+var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
@@ -33,8 +33,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
   var keys = data.columns.slice(1);
 
   data.sort(function(a, b) { return b.total - a.total; });
-  y.domain(data.map(function(d) { return d.employer; }));
-  x.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+  x.domain(data.map(function(d) { return d.employer; }));
+  y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
 
   g.append("g")
@@ -45,33 +45,33 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.selectAll("rect")
 	.data(function(d) { return d; })
 	.enter().append("rect")
-	.attr("y", function(d) { return x(d.data.employer); })
-	.attr("x", function(d) { return y(d[1]); })
+	.attr("x", function(d) { return x(d.data.employer); })
+	.attr("y", function(d) { return y(d[1]); })
 	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-	.attr("width", y.bandwidth())
+	.attr("width", x.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
   	.on("mousemove", function(d) {
-		var yPosition = d3.mouse(this)[0] - 15;
-   		var xPosition = d3.mouse(this)[1] - 25;
+		var xPosition = d3.mouse(this)[0] - 15;
+   		var yPosition = d3.mouse(this)[1] - 25;
 	  	tooltip
-		.style("left",yPosition+ "px")
-                .style("top", xPosition+ "px")		
+		.style("left",xPosition+ "px")
+                .style("top", yPosition+ "px")		
 	  	.style("display", "inline-block")
-		.html("Employer City: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
+		.html("Employer Name: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
 
   g.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(y));
+		.call(d3.axisBottom(x));
 
   g.append("g")
 		.attr("class", "axis")
-		.call(d3.axisLeft(x).ticks(null, "s"))
+		.call(d3.axisLeft(y).ticks(null, "s"))
 		.append("text")
-		.attr("y", 2)
-		.attr("x", x(x.ticks().pop()) + 0.5)
+		.attr("x", 2)
+		.attr("y", y(y.ticks().pop()) + 0.5)
 		.attr("dy", "0.32em")
 		.attr("fill", "#000")
 		.attr("font-weight", "bold")
@@ -88,15 +88,15 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   legend.append("rect")
-		.attr("y", width - 19)
+		.attr("x", width - 19)
 		.attr("width", 19)
 		.attr("height", 19)
 		.attr("fill", z);
 
   legend.append("text")
-		.attr("y", width - 24)
-		.attr("x", 9.5)
-		.attr("dx", "0.32em")
+		.attr("x", width - 24)
+		.attr("y", 9.5)
+		.attr("dy", "0.32em")
 		.text(function(d) { return d; });
 
 });
