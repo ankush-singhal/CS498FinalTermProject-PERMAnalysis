@@ -47,7 +47,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.enter().append("rect")
 	.attr("x", function(d) { return x(d.data.employer); })
 	.attr("y", function(d) { return y(d[1]); })
-	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+	.attr("height", function(d) { return (y(d[0]) - y(d[1]))/1.5; })
 	.attr("width", x.bandwidth())
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
@@ -63,7 +63,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 
   g.append("g")
 		.attr("class", "axis")
-		.attr("transform", "translate(0," + height/2 + ")")
+		.attr("transform", "translate(0," + height + ")")
 		.call(d3.axisBottom(x))
 		.selectAll("text")  
           	.style("text-anchor", "end")
