@@ -11,12 +11,8 @@
 
 	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="css/slides.css" />
-	<!--link rel="stylesheet" type="text/css" href="css/annotations.css" /-->
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />	
-	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<!--link rel="stylesheet" type="text/css" href="css/zoomable_sunburst.css" />
-	<link rel="stylesheet" type="text/css" href="css/linechart.css" /-->
-	
+	<link rel="stylesheet" type="text/css" href="css/main.css" />	
 
 	<link href='https://fonts.googleapis.com/css?family=Lato:300,900' rel='stylesheet' type='text/css'>
 
@@ -27,7 +23,8 @@
 	<![endif]-->
 
 	<!-- import d3.v3 -->
-	<!--script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script-->
+	
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<!--script type="text/javascript" src="js/d3.v3.min.js"></script-->
 
 	<!-- import fullPage -->
@@ -43,10 +40,10 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				verticalCentered: false,
-				anchors: ['intro', 'datavis', 'permpdata', 'top10city', 'top10employer', 'checkins', 'findings', 'ref'],
+				anchors: ['intro', 'datavis', 'permpdata', 'top10city', 'top10employer', 'state', 'findings', 'ref'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['Introduction', 'About the Visualization', 'PERM Dataset', 'Top 10 Cities', 'Top 10 Employers', 'NV Checkins', 
+				navigationTooltips: ['Introduction', 'About the Visualization', 'PERM Dataset', 'Top 10 Cities', 'Top 10 Employers', 'PERM Application by State', 
 					'Findings', 'References']
 			});});
 	</script>
@@ -112,7 +109,7 @@
 				into.</p>
 		</div>
 	</div>
-	<div class="section" id="background_bw">
+	<div class="section" ">
 		<div id="vbar_title"><h1>Top 10 Cities by number of PERM application over a period of time.</h1></div>
 		<div id="vbar_content">
 			<!--div id="bar_text">
@@ -123,7 +120,7 @@
 			</div>
 		</div>
 	</div>	
-	<div class="section" id="background_bw">
+	<div class="section" >
 		<div id="hbar_title"><h1>Cassification of top 10 Employers by number of PERM application and class of admission
 </h1></div>
 		<div id="hbar_content">
@@ -135,20 +132,18 @@
 			</div>
 		</div>
 	</div>	
-	<!--div class="section" id="background_bw">
-		<div id="linechart_title"><h1>Customer Checkins per Hour per Category</h1></div>
-		<div id="linechart_content">
-			<div id="linechart_text">
-				<p>Aggregating the hourly check-ins per restaurant categories for NV reveals a consistent trend. Regardless of the day of the week, 
-					there is a cyclic relationship between the number of check-ins and the time of the day. The amount of check-ins peaks out near 
-					the end of the day with a general increase over the weekend.</p>
-			</div>
-			<div id="linechart_container">
-				<div id="linechart"></div>
+	<div class="section">
+		<div id="map_title"><h1>Choropleth of PERM application count By US States between 2014 - 2017</h1></div>
+		<div id="map_content">
+			<!--div id="map_text">
+				<p></p>
+			</div-->
+			<div id="map_container">
+				<div id="vis3"></div>
 			</div>
 		</div>
 	</div>
-	<div class="section" id="analytics">
+	<!--div class="section" id="analytics">
 		<div id="content_div">
 			<h1>Findings</h1>
 			<p>​The initial analysis based on the Yelp Academic Dataset shows that a prospective restaurant owner should choose to open an 
@@ -201,13 +196,9 @@
 	</div-->
 </div>
 
-<!--script type="text/javascript" src="js/tooltip.js"></script-->
-<!--script type="text/javascript" src="js/annotations.js"></script-->
-<!--script type="text/javascript" src="js/zoomable_sunburst.js"></script-->
 <script type="text/javascript" src="js/Top10City.js"></script>
 <script type="text/javascript" src="js/Top10Employers.js"></script>
 
-<!--script type="text/javascript" src="js/bubble_chart.js"></script-->
 
 
 </body>
