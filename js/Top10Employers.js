@@ -63,7 +63,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 
   g.append("g")
 		.attr("class", "axis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(0," + height/2 + ")")
 		.call(d3.axisBottom(x))
 		.selectAll("text")  
           	.style("text-anchor", "end")
@@ -78,7 +78,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 		.call(d3.axisLeft(y).ticks(null, "s"))
 		.append("text")
 		.attr("x", 2)
-		.attr("y", y(y.ticks().pop()))
+		.attr("y", y(y.ticks().pop()) + 0.5)
 		.attr("dy", "0.32em")
 		.attr("fill", "#000")
 		.attr("font-weight", "bold")
