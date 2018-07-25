@@ -64,7 +64,14 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
   g.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+		.call(d3.axisBottom(x))
+		.selectAll("text")  
+          	.style("text-anchor", "end")
+            	.attr("dx", "-.5em")
+            	.attr("dy", "-.90em")
+            	.attr("transform", function(d) {
+                return "rotate(-45)" 
+                });
 
   g.append("g")
 		.attr("class", "axis")
