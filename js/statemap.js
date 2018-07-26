@@ -8,8 +8,7 @@ var svg2 = d3.select("div#vis3")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 
-var g2 = svg2.append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var g2 = svg2.append("g");
   
   
 /*d3.select(window)
