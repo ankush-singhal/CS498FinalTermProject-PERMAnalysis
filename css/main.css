@@ -42,13 +42,13 @@ rect:hover {
 		font-size:14px;
 	}
 	#tooltipmap{
-		background:rgba(0,0,0,0.9);
+		background: none repeat scroll 0 0 #ffffff;
 		border:1px solid grey;
 		border-radius:5px;
 		font-size:12px;
 		width:auto;
 		padding:4px;
-		color:white;
+		color:#000000;
 		opacity:0;
 	}
 	#tooltipmap table{
