@@ -9,17 +9,6 @@ var svg2 = d3.select("div#vis3")
   .attr("height", height1 + margin1.top + margin1.bottom)
   .append("g");
   
-
-/*d3.select(window)
-    		.on("resize", sizeChange);
-var svg = d3.select("div#vis3")
-		.append("svg")
-		.attr("width", "100%")
-    	.append("g");
-function sizeChange() {
-	    d3.select("g").attr("transform", "scale(" + $("#container").width()/980 + ")");
-	    $("svg").height($("#container").width()*0.618);
-	}*/
 function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 		return  "<table>"+
 			"<tr><td>State Name:"+"<b>"+n+"</b>"+"</td></tr>"+
