@@ -25,11 +25,11 @@ data.forEach(function(d) {
 uStates.draw("div#vis3 svg g",Data, tooltipHtml);
 });
 var color = d3.scaleThreshold()
-     .domain([500,1000, 5000,15000,25000,50000,75000,100000])
+     .domain([5000,15000,25000,50000,75000,100000])
 	 .range(d3.schemeBlues[9]);
 //Adding legend for our Choropleth
-var ext_color_domain = [0,500,1000, 5000,15000,25000,50000,75000,100000]
-var legend_labels = ["< 500", "500 - 1k", "1k - 5k", "5k - 15k", "15k - 25k","25k - 50k", "50k - 75k", "75k - 100k",">100k"]
+var ext_color_domain = [5000,15000,25000,50000,75000,100000]
+var legend_labels = ["< 500", "500 - 1k", "1k - 5k", "5k - 15k", "15k - 25k","25k - 50k"]
   var legend1 = svg2.selectAll("g.legend")
   .data(ext_color_domain)
   .enter().append("g")
