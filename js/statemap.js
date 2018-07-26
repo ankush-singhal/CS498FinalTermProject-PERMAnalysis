@@ -53,7 +53,7 @@ var legend_labels = ["< 500", "500 - 1k", "1k - 5k", "5k - 15k", "15k - 25k","25
   .style("opacity", 0.9)
   .style("stroke", "black")
   .style("stroke-width", 1);
-  legend.append("text")
+  legend1.append("text")
   .attr("x", 895)
   .attr("y", function(d, i){ return 450 - (i*ls_h) - ls_h - 4;})
   .text(function(d, i){ return legend_labels[i]; });
