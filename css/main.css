@@ -14,7 +14,7 @@ rect:hover {
   background: none repeat scroll 0 0 #ffffff;
   border: 1px solid #000000;
   padding: 14px;
-  text-align: center;
+  text-align: left;
   border-radius:5px;
 }
 
@@ -62,5 +62,5 @@ rect:hover {
 		min-width:120px;
 	}
 	#tooltipmap tr td:nth-child(2){
-		text-align:center;
+		text-align:left;
 	}
