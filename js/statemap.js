@@ -21,8 +21,9 @@ function sizeChange() {
 	    $("svg").height($("#container").width()*0.618);
 	}*/
 function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
-		return "<b>"+n+"</b><table>"+
-			"<tr><td>Number of PERM Applications:"+"<b>"+(d.Count)+"</b>"+"</td></tr>"
+		return  "<table>"+
+			"<tr><td>State Name:"+"<b>"+n+"</b>"+"</td></tr>"+
+			"<tr><td>Number of PERM Applications:"+"<b>"+(d.Count)+"</b>"+"</td></tr>"+
 			"</table>";
 	}
 var Data ={};
