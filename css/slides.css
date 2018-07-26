@@ -86,6 +86,13 @@ p {
   top: 15%;
   transform: translateX(25%);
 }
+
+#map_content {
+  position: absolute;
+  top: 15%;
+  transform: translateX(15%);
+}
+
 #hbar_container, #vbar_container, #map_container {
   width: 1024px;
   height: 520px;
