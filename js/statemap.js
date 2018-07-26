@@ -6,8 +6,11 @@ var width = 960 - margin.left - margin.right,
 var svg2 = d3.select("div#vis3")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g");
+  .attr("height", height + margin.top + margin.bottom);
+
+var g2 = svg2.append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
   
 /*d3.select(window)
     		.on("resize", sizeChange);
