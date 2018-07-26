@@ -6,6 +6,7 @@
     padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
+    transform: translateX(25%);
 }
 .svg-content {
     display: inline-block;
