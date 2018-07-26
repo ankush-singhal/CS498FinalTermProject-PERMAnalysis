@@ -76,24 +76,24 @@ p {
   margin: -20px;
 }*/
 
-#hbar_title, #vbar_title  h1 {
+#hbar_title, #vbar_title, #map_title  h1 {
   text-align: center;
 }
 
 
-#hbar_content, #vbar_content {
+#hbar_content, #vbar_content, #map_content {
   position: absolute;
   top: 15%;
   transform: translateX(25%);
 }
-#hbar_container, #vbar_container{
+#hbar_container, #vbar_container, #map_container {
   width: 1024px;
   height: 520px;
   margin: 30px; 
   float: left;
   width: 70%;
 }
-#hbar_text, #vbar_text {
+#hbar_text, #vbar_text, #map_text {
   margin: 30px;
   left: 5%;
   padding: 10px;
@@ -104,37 +104,6 @@ p {
 }
 
 
-/* NV Check-ins
-* --------------------------------------- */
-#linechart {
-  text-align:center;
-}
-#linechart_title {
-  margin: 30px;
-}
-#linechart_content {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-55%);
-}
-#linechart_container {
-  width: 1024px;
-  height: 520px;
-  margin: 30px; 
-  background-color: #fff;
-  border: 1px solid black;
-  float: left;
-  width: 70%;
-}
-#linechart_text {
-  margin: 30px;
-  left: 5%;
-  padding: 10px;
-  float: left;
-  width: 20%;
-  background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-  background: rgba(255, 255, 255, 0.7);	  
-}
 /* Findings
 * --------------------------------------- */
 #analytics{
