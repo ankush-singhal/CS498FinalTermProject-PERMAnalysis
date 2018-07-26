@@ -56,11 +56,15 @@
 		
 	uStates.draw = function(id, data, toolTip){		
 		function mouseOver(d){
-			d3.select("#tooltipmap").transition().duration(200).style("opacity", .9);      
+			d3.select("#tooltipmap").transition().duration(200).style("opacity", .9); 
+			 var xPosition = d3.mouse(this)[0] - 15;
+   	 		 var yPosition = d3.mouse(this)[1] - 25;
 			
 			d3.select("#tooltipmap").html(toolTip(d.n, data[d.id]))  
-				.style("left", (d3.event.pageX) + "px")     
-				.style("top", (d3.event.pageY - 28) + "px");
+				.style("left",xPosition+ "px")
+               			.style("top", yPosition+ "px");
+				/*.style("left", (d3.event.pageX) + "px")     
+				.style("top", (d3.event.pageY - 28) + "px");*/
 		}
 		
 		function mouseOut(){
