@@ -56,11 +56,9 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.on("mouseover", function() { tooltip1.style("display", null); })
 	.on("mouseout", function() { tooltip1.style("display", "none"); })
   	.on("mousemove", function(d) {
-	  var xPosition = d3.mouse(this)[0] - 15;
-   	  var yPosition = d3.mouse(this)[1] - 25;
 	  tooltip1
-		.style("left",xPosition+ "px")
-                .style("top", yPosition+ "px")		
+		.style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 150 + "px")		
 	  	.style("display", "inline-block")
 		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
