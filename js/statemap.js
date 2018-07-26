@@ -31,7 +31,7 @@ data.forEach(function(d) {
 	Count :  +d.Count,
 	color : color(d.Count)};  
   });
-uStates.draw(g2,Data, tooltipHtml);
+uStates.draw("g",Data, tooltipHtml);
 });
 var color = d3.scaleThreshold()
      .domain([500,1000, 5000,15000,25000,50000,75000,100000])
