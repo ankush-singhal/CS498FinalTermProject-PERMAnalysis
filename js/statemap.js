@@ -1,12 +1,12 @@
-var margin = {top: 20, right: 160, bottom: 25, left: 30};
+var margin1 = {top: 20, right: 160, bottom: 35, left: 30};
 
-var width = 1200 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+var width1 = 1200 - margin2.left - margin2.right,
+    height1 = 700 - margin2.top - margin2.bottom;
 
 var svg2 = d3.select("div#vis3")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("width", width1 + margin1.left + margin1.right)
+  .attr("height", height1 + margin1.top + margin1.bottom)
   .append("g");
   
 
