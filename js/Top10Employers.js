@@ -9,7 +9,7 @@ var svg = d3.select("div#vis2")
   .attr("viewBox", "125 0 960 500")
   .classed("svg-content", true);
 
-var g = svg.append("g");
+var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var tooltip = d3.select("div#vis2").append("div").attr("class", "tooltip");
