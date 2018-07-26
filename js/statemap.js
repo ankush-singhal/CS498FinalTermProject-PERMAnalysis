@@ -7,7 +7,8 @@ var svg2 = d3.select("div#vis3")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
-  .append("g");
+  append("g");
+  
 
 /*d3.select(window)
     		.on("resize", sizeChange);
@@ -31,7 +32,7 @@ data.forEach(function(d) {
 	Count :  +d.Count,
 	color : color(d.Count)};  
   });
-uStates.draw("g",Data, tooltipHtml);
+uStates.draw("div#vis3 svg g",Data, tooltipHtml);
 });
 var color = d3.scaleThreshold()
      .domain([500,1000, 5000,15000,25000,50000,75000,100000])
