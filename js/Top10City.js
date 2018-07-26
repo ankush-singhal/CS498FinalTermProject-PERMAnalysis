@@ -5,8 +5,10 @@ var width = 960 - margin.left - margin.right,
 
 var svg1 = d3.select("div#vis1")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom);
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 960 500")
+  /*.attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom);*/
   
  var g1 = svg1.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
