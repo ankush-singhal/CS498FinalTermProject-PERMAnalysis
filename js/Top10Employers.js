@@ -54,13 +54,9 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
   	.on("mousemove", function(d) {
-		//var xPosition = d3.mouse(this)[0] - 15;
-   		//var yPosition = d3.mouse(this)[1] - 25;
-	  	tooltip
+		tooltip
 		.style("left", d3.event.pageX - 50 + "px")
-                .style("top", d3.event.pageY - 70 + "px")
-		//.style("left",xPosition+ "px")
-                //.style("top", yPosition+ "px")		
+                .style("top", d3.event.pageY - 150 + "px")
 	  	.style("display", "inline-block")
 		.html("Employer Name: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
