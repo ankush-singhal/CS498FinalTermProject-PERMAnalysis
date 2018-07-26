@@ -5,12 +5,12 @@ var width = 960 - margin.left - margin.right,
 
 var svg = d3.select("div#vis2")
   .append("svg")
-  .attr("preserveAspectRatio", "xMaxYMax meet")
+  .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "125 0 960 500")
   .classed("svg-content", true);
 
-var g = svg.append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var g = svg.append("g");
+  //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var tooltip = d3.select("div#vis2").append("div").attr("class", "tooltip");
 
