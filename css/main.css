@@ -59,7 +59,7 @@ rect:hover {
 		margin:0;
 	}
 	#tooltipmap tr td:nth-child(1){
-		width:50px;
+		min-width:120px;
 	}
 	#tooltipmap tr td:nth-child(2){
 		text-align:center;
