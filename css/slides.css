@@ -81,11 +81,11 @@ p {
 }
 
 
-#hbar_content, #vbar_content, #map_content {
+/*#hbar_content, #vbar_content {
   position: absolute;
   top: 15%;
   transform: translateX(25%);
-}
+}*/
 
 #map_content {
   position: absolute;
