@@ -10,7 +10,7 @@ var svg = d3.select("div#vis2")
   .classed("svg-content", true);
 
 var g = svg.append("g");
-  //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var tooltip = d3.select("div#vis2").append("div").attr("class", "tooltip");
 
@@ -54,11 +54,13 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10employers.csv", function(d
 	.on("mouseover", function() { tooltip.style("display", null); })
  	.on("mouseout", function() { tooltip.style("display", "none"); })
   	.on("mousemove", function(d) {
-		var xPosition = d3.mouse(this)[0] - 15;
-   		var yPosition = d3.mouse(this)[1] - 25;
+		//var xPosition = d3.mouse(this)[0] - 15;
+   		//var yPosition = d3.mouse(this)[1] - 25;
 	  	tooltip
-		.style("left",xPosition+ "px")
-                .style("top", yPosition+ "px")		
+		.style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 70 + "px")
+		//.style("left",xPosition+ "px")
+                //.style("top", yPosition+ "px")		
 	  	.style("display", "inline-block")
 		.html("Employer Name: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
