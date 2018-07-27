@@ -112,7 +112,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.text(function(d) { return d; });
 		
 	
-rect = g.selectAll("rect");
+rect = g1.selectAll("rect");
 
   d3.selectAll("input")
     .on("change", changed);
