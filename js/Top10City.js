@@ -112,61 +112,29 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.text(function(d) { return d; });
 		
 	
-  d3.selectAll("input").on("change", change);
+rect = g.selectAll("rect");
 
-  var timeout = setTimeout(function() {
-    d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
-  }, 2000);
+  d3.selectAll("input")
+    .on("change", changed);
 
-  function change() {
-    clearTimeout(timeout);
-    if (this.value === "grouped") transitiongrouped();
-    else transitionStacked();
+  function changed() {
+    if (this.value === "grouped") transitionStep2();
+    else if (this.value === "stacked") transitionStep1();
   }
 
-  function transitiongrouped() {
-    var t = svg1.transition().duration(750),
-        /*g = t.selectAll(".group").attr("transform", function(d) { return "translate(0," + y0(d.key) + ")"; });
-		g.selectAll("rect").attr("y", function(d) { return y1(d.value); });
-		g.select(".group-label").attr("y", function(d) { return y1(d.values[0].value / 2); })*/	
-		g1 = t.selectAll("g")
-			.data(data)
-			.enter().append("g")
-			.attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; })
-			.selectAll("rect")
-			.data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
-			.enter().append("rect")
-			.attr("x", function(d) { return x1(d.key); })
-			.attr("y", function(d) { return y(d.value); })
+  function transitionStep1() {
+    rect.transition()
+      .attr("x", function(d) { return x(d.data.city); })
+	  .attr("y", function(d) { return y(d[1]); })
+	  .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+	  .attr("width", x.bandwidth())
+  }
+  
+	function transitionStep2() {
+    rect.transition()
+      		.attr("x", function(d) { return x1(d.data.city); })
+			.attr("y", function(d) { return y(d[1]); })
 			.attr("width", x1.bandwidth())
-			.attr("height", function(d) { return height - y(d.value); })
-			.attr("fill", function(d) { return z(d.key); });
-  }
-
-  function transitionStacked() {
-    var t = svg.transition().duration(750),
-        /*g = t.selectAll(".group").attr("transform", "translate(0," + y0(y0.domain()[0]) + ")");
-    g.selectAll("rect").attr("y", function(d) { return y1(d.value + d.valueOffset); });
-    g.select(".group-label").attr("y", function(d) { return y1(d.values[0].value / 2 + d.values[0].valueOffset); })*/
-	g1 = t.selectAll("g")
-	.data(d3.stack().keys(keys)(data))
-	.enter().append("g")
-	.attr("fill", function(d) { return z(d.key); })
-	.selectAll("rect")
-	.data(function(d) { return d; })
-	.enter().append("rect")
-	.attr("x", function(d) { return x(d.data.city); })
-	.attr("y", function(d) { return y(d[1]); })
-	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-	.attr("width", x.bandwidth())
-	.on("mouseover", function() { tooltip1.style("display", null); })
-	.on("mouseout", function() { tooltip1.style("display", "none"); })
-  	.on("mousemove", function(d) {
-	  tooltip1
-		.style("left", d3.event.pageX - 50 + "px")
-                .style("top", d3.event.pageY - 150 + "px")		
-	  	.style("display", "inline-block")
-		.html("Employer City: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
-		});
+			.attr("height", function(d) { return height - y(d[1]); });	  
   }
 });
