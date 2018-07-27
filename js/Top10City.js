@@ -45,7 +45,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   x.domain(data.map(function(d) { return d.city; }));
   
   //defined for Grouped bar graph  
-  x1.domain(keys).rangeRound([0, x0.bandwidth()])
+  x1.domain(keys).rangeRound([0, x.bandwidth()])
   
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   z.domain(keys);
