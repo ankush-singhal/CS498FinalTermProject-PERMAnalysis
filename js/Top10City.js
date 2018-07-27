@@ -5,7 +5,7 @@ var width = 960 - margin.left - margin.right,
 
 var svg1 = d3.select("div#vis1")
   .append("svg")
-  .attr("preserveAspectRatio", "xMidYMin meet")
+  .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "0 0 960 500")
   .classed("svg-content", true);
  /*.attr("width", width + margin.left + margin.right)
