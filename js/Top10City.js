@@ -31,14 +31,18 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
-d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i, columns) {
+/*d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;
 }, function(error, data) {
-  if (error) throw error;
+  if (error) throw error;*/
+var csv = 'city,year2014,year2015,year2016\nChicago,290,1630,2140\nHouston,335,1891,1871\nSunnyvale,385,1528,2221\nSan Francisco,313,1580,2654\nRedmond,547,739,3632\nMountain View,469,2499,3164\nSan Jose,808,2302,3116\nSanta Clara,345,3115,3588\nNew York,959,4511,5633\nCollege Station,23,7976,3636';
 
-  var keys = data.columns.slice(1);
+var data = d3.csvParse(csv), columns = ["year2014", "year2015", "year2016"];
+
+ // var keys = data.columns.slice(1);
+var keys = columns;
 
   data.sort(function(a, b) { return b.total - a.total; });
   
@@ -137,4 +141,4 @@ rect = g1.selectAll("rect");
      	 .attr("width", x.bandwidth() / 7)
       	 .attr("y", function(d) { return y(d[1] - d[0]); });
   }
-});
+//});
