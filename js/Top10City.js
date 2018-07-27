@@ -118,23 +118,23 @@ rect = g1.selectAll("rect");
     .on("change", changed);
 
   function changed() {
-    if (this.value === "grouped") transitionStep2();
-    else if (this.value === "stacked") transitionStep1();
+    if (this.value === "stacked") transitionStep1();
+    else if (this.value === "grouped") transitionStep2();
   }
 
   function transitionStep1() {
     rect.transition()
+      .attr("y", function(d) { return y(d[1]); })
       .attr("x", function(d) { return x(d.data.city); })
-	  .attr("y", function(d) { return y(d[1]); })
-	  .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-	  .attr("width", x.bandwidth())
+      .attr("width", x.bandwidth());
   }
   
 	function transitionStep2() {
     rect.transition()
-      		.attr("x", function(d) { return x1(d.data.city); })
-			.attr("y", function(d) { return y(d[1]); })
-			.attr("width", x1.bandwidth())
-			.attr("height", function(d) { return height - y(d[1]); });	  
+	.attr("x", function(d) { 
+      		return x(d.data.city) + x1(d3.select(this.parentNode).datum().key); 
+    		})
+     	 .attr("width", x.bandwidth() / 7)
+      	 .attr("y", function(d) { return y(d[1] - d[0]); });
   }
 });
