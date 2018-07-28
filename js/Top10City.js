@@ -34,7 +34,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     if (error) throw error;
 
     keys = data.columns.slice(1);
-
+    data.sort(function(a, b) { return b.total - a.total; });	
     x1.domain(data.map(function(d) { return d.city; }));
     y1.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
     z.domain(keys);
