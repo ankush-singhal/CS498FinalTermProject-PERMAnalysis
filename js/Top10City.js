@@ -1,14 +1,14 @@
-var svg = d3.select("#vis1"),
+var svg1 = d3.select("#vis1"),
     margin = {top: 20, right: 20, bottom: 20, left: 20},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = +svg1.attr("width") - margin.left - margin.right,
+    height = +svg1.attr("height") - margin.top - margin.bottom,
+    g1 = svg1.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var x = d3.scaleBand()
+var x1 = d3.scaleBand()
     .rangeRound([0, width])
     .padding(0.08);
 
-var y = d3.scaleLinear()
+var y1 = d3.scaleLinear()
     .range([height, 0]);
 
 var color = d3.scaleOrdinal()
@@ -25,8 +25,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 
     keys = data.columns.slice(1);
 
-    x.domain(data.map(function(d) { return d.city; }));
-    y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+    x1.domain(data.map(function(d) { return d.city; }));
+    y1.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
     color.domain(keys);
 
     var stackData = d3.stack().keys(keys)(data);
@@ -35,7 +35,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         element.forEach(e2 => { e2.keyIdx = keyIdx; });
     });
 
-    g.append("g")
+    g1.append("g")
     .selectAll("g")
     .data(stackData)
     .enter().append("g")
@@ -43,13 +43,13 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     .selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
-        .attr("x", function(d) { return x(d.data.Year); })
-        .attr("y", function(d) { return y(d[1]); })
-        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-        .attr("width", x.bandwidth())
+        .attr("x", function(d) { return x1(d.data.Year); })
+        .attr("y", function(d) { return y1(d[1]); })
+        .attr("height", function(d) { return y1(d[0]) - y(d[1]); })
+        .attr("width", x1.bandwidth())
         .attr("stroke", "black");
 
-    rect = g.selectAll("rect");
+    rect = g1.selectAll("rect");
 });
 
 d3.selectAll("input")
@@ -62,16 +62,16 @@ function changed() {
 
 function transitionStep1() {
     rect.transition()
-    .attr("y", function(d) { return y(d[1]); })
-    .attr("x", function(d) { return x(d.data.city); })
+    .attr("y", function(d) { return y1(d[1]); })
+    .attr("x", function(d) { return x1(d.data.city); })
     .attr("width", x.bandwidth())
     .attr("stroke", "green");
 }
 
 function transitionStep2() {
     rect.transition()
-    .attr("x", function(d, i) { return x(d.data.city) + x.bandwidth() / (keys.length+1) * d.keyIdx; })
-    .attr("width", x.bandwidth() / (keys.length+1))
-    .attr("y", function(d) { return y(d[1] - d[0]); })
+    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
+    .attr("width", x1.bandwidth() / (keys.length+1))
+    .attr("y", function(d) { return y1(d[1] - d[0]); })
     .attr("stroke", "red");
 }
