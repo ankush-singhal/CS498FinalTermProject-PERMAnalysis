@@ -39,7 +39,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     .selectAll("g")
     .data(stackData)
     .enter().append("g")
-        .attr("fill", function(d) { return color(d.key); })
+     .attr("fill", function(d) { return color(d.key); })
     .selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
@@ -47,12 +47,22 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("y", function(d) { return y1(d[1]); })
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
-        .attr("stroke", "black");
+        //.attr("stroke", "black")
+	.on("mouseover", function() { tooltip.style("display", null); })
+ 	.on("mouseout", function() { tooltip.style("display", "none"); })
+  	.on("mousemove", function(d) {
+		tooltip
+		.style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 150 + "px")
+	  	.style("display", "inline-block")
+		.html("Employer Name: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
+		});
 		
 	 g1.append("g")
 			.attr("class", "axis")
 			.attr("transform", "translate(0," + height1 + ")")
-			.call(d3.axisBottom(x1));
+			.call(d3.axisBottom(x1))
+			.selectAll("text") ;
 
 	  g1.append("g")
 			.attr("class", "axis")
