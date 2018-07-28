@@ -97,13 +97,14 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 	legend1.append("rect")
-		.attr("x", width1 - 19)
+		.attr("x", width1 - 270)
 		.attr("width", 19)
 		.attr("height", 19)
-		.attr("fill", color);
+		.attr("fill", z)
+		.attr("stroke", "black");
 
 	legend1.append("text")
-		.attr("x", width - 24)
+		.attr("x", width1 - 245)
 		.attr("y", 9.5)
 		.attr("dy", "0.32em")
 		.text(function(d) { return d; });
