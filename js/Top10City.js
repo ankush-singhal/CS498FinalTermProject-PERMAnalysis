@@ -1,6 +1,8 @@
+
 var margin = {top: 20, right: 160, bottom: 35, left: 30};
 
 var width = 960 - margin.left - margin.right,
+
     height = 500 - margin.top - margin.bottom;
 
 var svg1 = d3.select("div#vis1")
@@ -18,17 +20,17 @@ var tooltip1 = d3.select("div#vis1").append("div").attr("class", "tooltip");
 
 var x = d3.scaleBand()
     .rangeRound([0, width])
+
     .paddingInner(0.05)
     .align(0.1);
 	
 // x1 defined for Grouped bar graph
-var x1 = d3.scaleBand()
-    .padding(0.05);
+var x1 = d3.scaleBand();
 	
 var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+    .range([height, 0]);
 
-var z = d3.scaleOrdinal()
+var color = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
 /*d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i, columns) {
@@ -54,17 +56,17 @@ var keys = columns;
   x.domain(data.map(function(d) { return d.city; }));
   
   //defined for Grouped bar graph  
-  x1.domain(keys).rangeRound([0, x.bandwidth()])
+  x1.domain(keys).rangeRound([0, x.bandwidth()]);
   
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
-  z.domain(keys);
+  color.domain(keys);
 
   //defined for Stacked bar graph 
   g1.append("g")
 	.selectAll("g")
 	.data(d3.stack().keys(keys)(data))
 	.enter().append("g")
-	.attr("fill", function(d) { return z(d.key); })
+	.attr("fill", function(d) { return color(d.key); })
 	.selectAll("rect")
 	.data(function(d) { return d; })
 	.enter().append("rect")
@@ -112,7 +114,7 @@ var keys = columns;
 		.attr("x", width - 19)
 		.attr("width", 19)
 		.attr("height", 19)
-		.attr("fill", z);
+		.attr("fill", color);
 
   legend.append("text")
 		.attr("x", width - 24)
@@ -135,6 +137,8 @@ rect = g1.selectAll("rect");
     rect.transition()
       .attr("y", function(d) { return y(d[1]); })
       .attr("x", function(d) { return x(d.data.city); })
+
+
       .attr("width", x.bandwidth());
   }
   
@@ -145,5 +149,6 @@ rect = g1.selectAll("rect");
     		})
      	 .attr("width", x.bandwidth() / 7)
       	 .attr("y", function(d) { return y(d[1] - d[0]); });
+
   }
 //});
