@@ -28,7 +28,7 @@ data.forEach(function(d) {
   var keys = columns;
 
   x.domain(data.map(function(d) { return d.city; }));
-  x1.domain(keys).rangeRound([0, x.bandwidth()]);
+  x1.domain(keys).range([0, x.bandwidth()]);
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   color.domain(keys);
 
@@ -109,6 +109,7 @@ var legend = svg.selectAll(".legend")
       .attr("x", function(d) { 
       	return x(d.data.city) + x1(d3.select(this.parentNode).datum().key); 
     	})
-      .attr("width", x.bandwidth() / 7)
-      .attr("y", function(d) { return y(d[1] - d[0]); });      
+      .attr("width", x.bandwidth() / 3)
+      .attr("y", function(d) { return y(d[1] - d[0]); })
+      .attr("height", function(d) { return height - y(d[1] - d[0]); });      
   }
