@@ -9,7 +9,7 @@ var svg1 = d3.select("#vis1")
  var width1 = 960 - margin1.left - margin1.right;
  var height1 = 500 - margin1.top - margin1.bottom;
   
-var g1 = svg.append("g")
+var g1 = svg1.append("g")
   .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
 
