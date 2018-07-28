@@ -1,6 +1,6 @@
 var margin1 = {top: 20, right: 160, bottom: 35, left: 30};
 
-var svg1 = d3.select("#vis1")
+var svg1 = d3.select("div#vis1")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
   .attr("viewBox", "0 0 960 500")
@@ -19,7 +19,7 @@ var g1 = svg1.append("g")
     height1 = +svg1.attr("height") - margin1.top - margin1.bottom,
     g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");*/
 
-var tooltip1 = d3.select("div#vbar_container").append("div").attr("class", "tooltip")
+var tooltip1 = d3.select("div#vis1").append("div").attr("class", "tooltip")
 
 var x1 = d3.scaleBand()
     .rangeRound([0, width1])
