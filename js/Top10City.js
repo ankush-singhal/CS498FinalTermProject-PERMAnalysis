@@ -5,7 +5,7 @@ var svg1 = d3.select("#vis1"),
     g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
 var x1 = d3.scaleBand()
-    .rangeRound([0, width])
+    .rangeRound([0, width1])
     .padding(0.08);
 
 var y1 = d3.scaleLinear()
