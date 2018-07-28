@@ -1,5 +1,5 @@
 var svg1 = d3.select("#vis1"),
-    margin1 = {top: 20, right: 20, bottom: 20, left: 20},
+    margin1 = {top: 20, right: 20, bottom: 35, left: 20},
     width1 = +svg1.attr("width") - margin1.left - margin1.right,
     height1 = +svg1.attr("height") - margin1.top - margin1.bottom,
     g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
@@ -48,10 +48,10 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
         //.attr("stroke", "black")
-	.on("mouseover", function() { tooltip.style("display", null); })
- 	.on("mouseout", function() { tooltip.style("display", "none"); })
+	.on("mouseover", function() { tooltip1.style("display", null); })
+ 	.on("mouseout", function() { tooltip1.style("display", "none"); })
   	.on("mousemove", function(d) {
-		tooltip
+		tooltip1
 		.style("left", d3.event.pageX - 50 + "px")
                 .style("top", d3.event.pageY - 150 + "px")
 	  	.style("display", "inline-block")
