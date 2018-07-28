@@ -8,7 +8,7 @@
     .rangeRound([0, width])
     .padding(0.08);
 
-	var x1 = d3.scaleBand();
+//	var x1 = d3.scaleBand();
   
   var y = d3.scaleLinear()
     .range([height, 0]);
@@ -28,13 +28,21 @@ data.forEach(function(d) {
   var keys = columns;
 
   x.domain(data.map(function(d) { return d.city; }));
-  x1.domain(keys).range([0, x.bandwidth()]);
+ // x1.domain(keys).rangeRound([0, x.bandwidth()]);
   y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
   color.domain(keys);
+  
+   var stackData = d3.stack().keys(keys)(data);
+    stackData.forEach(element => {
+        var keyIdx = keys.findIndex(e => e === element.key);
+        element.forEach(e2 => { e2.keyIdx = keyIdx; });
+    });
+
 
   g.append("g")
     .selectAll("g")
-    .data(d3.stack().keys(keys)(data))
+    //.data(d3.stack().keys(keys)(data))
+    .data(stackData)
     .enter().append("g")
       .attr("fill", function(d) { return color(d.key); })
     .selectAll("rect")
@@ -63,15 +71,24 @@ data.forEach(function(d) {
 		.attr("text-anchor", "start")
 		.text("No. of Employees");
     
-var legend = svg.selectAll(".legend")
+	var legend = svg.selectAll(".legend")
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
-      .attr("text-anchor", "end")
+		  .attr("font-size", 10)
+		  .attr("text-anchor", "end")
       .data(keys.slice().reverse())
       .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
  
+/* var legend = g.append("g")
+		.attr("font-family", "sans-serif")
+		.attr("font-size", 10)
+		.attr("text-anchor", "end")
+		.selectAll("g")
+		.data(keys.slice().reverse())
+		.enter().append("g")
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });*/
+
   legend.append("rect")
 		.attr("x", width - 19)
 		.attr("width", 19)
@@ -100,16 +117,21 @@ var legend = svg.selectAll(".legend")
     rect.transition()
       .attr("y", function(d) { return y(d[1]); })
       .attr("x", function(d) { return x(d.data.city); })
-	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
-      .attr("width", x.bandwidth());      
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); });
   }
   
 	function transitionStep2() {
-        rect.transition()
-      .attr("x", function(d) { 
-      	return x(d.data.city) + x1(d3.select(this.parentNode).datum().key); 
+    rect.transition()
+      .attr("x", function(d,i) { 
+      return x(d.data.city) + x.bandwidth()/3*d.keyIdx; 
+      	//return x(d.data.city) + x1(d3.select(this.parentNode).datum().key);
+        //return x(d.data.city) + color(d.key);
+        //return x(d.data.city)+ x.bandwidth() / 7 * color(d.key);
+        //return x1(d.key); 
     	})
+      //.attr("fill", function(d) { return color(d.key); })
       .attr("width", x.bandwidth() / 3)
-      .attr("y", function(d) { return y(d[1] - d[0]); })
-      .attr("height", function(d) { return height - y(d[1] - d[0]); });      
+      .attr("y", function(d) { return y(d[1] - d[0]); })  
+      .attr("height", function(d) { return height - y(d[1] - d[0]); });
   }
