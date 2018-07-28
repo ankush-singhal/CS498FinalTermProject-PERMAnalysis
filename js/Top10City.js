@@ -45,7 +45,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     .enter().append("rect")
         .attr("x", function(d) { return x1(d.data.Year); })
         .attr("y", function(d) { return y1(d[1]); })
-        .attr("height", function(d) { return y1(d[0]) - y(d[1]); })
+        .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
         .attr("stroke", "black");
 
