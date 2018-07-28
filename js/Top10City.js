@@ -49,22 +49,23 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("width", x1.bandwidth())
         .attr("stroke", "black");
 		
-	 g.append("g")
+	 g1.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(x));
+			.attr("transform", "translate(0," + height1 + ")")
+			.call(d3.axisBottom(x1));
 
-	  g.append("g")
+	  g1.append("g")
 			.attr("class", "axis")
-			.call(d3.axisLeft(y).ticks(null, "s"))
+			.call(d3.axisLeft(y1).ticks(null, "s"))
 			.append("text")
 			.attr("x", 2)
-			.attr("y", y(y.ticks().pop()) + 0.5)
+			.attr("y", y1(y1.ticks().pop()) + 0.5)
 			.attr("dy", "0.32em")
 			.attr("fill", "#000")
 			.attr("font-weight", "bold")
 			.attr("text-anchor", "start")
 			.text("No. of Employees");
+	
     rect = g1.selectAll("rect");
 });
 
