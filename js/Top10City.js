@@ -1,8 +1,23 @@
-var svg1 = d3.select("#vis1"),
+var margin1 = {top: 20, right: 160, bottom: 35, left: 30};
+
+var svg1 = d3.select("#vis1")
+  .append("svg")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 960 500")
+  .classed("svg-content", true);
+
+ var width1 = 960 - margin1.left - margin1.right;
+ var height1 = 500 - margin1.top - margin1.bottom;
+  
+var g1 = svg.append("g")
+  .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
+
+
+/*var svg1 = d3.select("#vis1"),
     margin1 = {top: 20, right: 160, bottom: 35, left: 30},
     width1 = +svg1.attr("width") - margin1.left - margin1.right,
     height1 = +svg1.attr("height") - margin1.top - margin1.bottom,
-    g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
+    g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");*/
 
 var tooltip1 = d3.select("div#vbar_container").append("div").attr("class", "tooltip")
 
@@ -50,8 +65,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
         .attr("stroke", "black")
-	//.on("mouseover", function() { tooltip1.style("display", null); })
- 	//.on("mouseout", function() { tooltip1.style("display", "none"); })
+	.on("mouseover", function() { tooltip1.style("display", null); }) 	
   	.on("mousemove", function(d) {
 		tooltip1
 		.style("left", d3.event.pageX - 50 + "px")
