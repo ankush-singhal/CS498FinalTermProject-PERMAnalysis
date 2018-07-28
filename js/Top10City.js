@@ -41,7 +41,7 @@ var color = d3.scaleOrdinal()
   if (error) throw error;*/
 var csv = 'city,year2014,year2015,year2016\nChicago,290,1630,2140\nHouston,335,1891,1871\nSunnyvale,385,1528,2221\nSan Francisco,313,1580,2654\nRedmond,547,739,3632\nMountain View,469,2499,3164\nSan Jose,808,2302,3116\nSanta Clara,345,3115,3588\nNew York,959,4511,5633\nCollege Station,23,7976,3636';
 
-var data = d3.csvParse(csv), columns = ["year2014", "year2015", "year2016"];
+var data = d3.csvParse(csv), columns = ["2014", "2015", "2016"];
 
 data.forEach(function(d) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
@@ -108,7 +108,15 @@ var keys = columns;
 		.selectAll("g")
 		.data(keys.slice().reverse())
 		.enter().append("g")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });*/
+ var legend = svg.selectAll(".legend")
+     		 .attr("font-family", "sans-serif")
+		 .attr("font-size", 10)
+		 .attr("text-anchor", "end")
+      		 .data(keys.slice().reverse())
+      		 .enter().append("g")
+      //.attr("class", "legend")
+      		 .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   legend.append("rect")
 		.attr("x", width - 19)
@@ -120,7 +128,7 @@ var keys = columns;
 		.attr("x", width - 24)
 		.attr("y", 9.5)
 		.attr("dy", "0.32em")
-		.text(function(d) { return d; });*/
+		.text(function(d) { return d; });
 		
 	
 rect = g1.selectAll("rect");
