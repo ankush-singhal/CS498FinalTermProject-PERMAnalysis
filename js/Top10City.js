@@ -13,7 +13,7 @@ var x1 = d3.scaleBand()
 var y1 = d3.scaleLinear()
     .range([height1, 0]);
 
-var color = d3.scaleOrdinal()
+var z = d3.scaleOrdinal()
     .range(["#9bc7e4", "#8ed07f", "#f7ae54"]);
 
 var keys;
@@ -29,7 +29,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 
     x1.domain(data.map(function(d) { return d.city; }));
     y1.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
-    color.domain(keys);
+    z.domain(keys);
 
     var stackData = d3.stack().keys(keys)(data);
     stackData.forEach(element => {
@@ -41,7 +41,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     .selectAll("g")
     .data(stackData)
     .enter().append("g")
-     .attr("fill", function(d) { return color(d.key); })
+     .attr("fill", function(d) { return z(d.key); })
     .selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
@@ -55,9 +55,9 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
   	.on("mousemove", function(d) {
 		tooltip1
 		.style("left", d3.event.pageX - 50 + "px")
-                .style("top", d3.event.pageY - 150 + "px")
+         style("top", d3.event.pageY - 50 + "px")
 	  	.style("display", "inline-block")
-		.html("Employer Name: <b>"+d.data.employer+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
+		.html("City Name: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		});
 		
 	 g1.append("g")
