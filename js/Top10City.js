@@ -41,6 +41,11 @@ var csv = 'city,year2014,year2015,year2016\nChicago,290,1630,2140\nHouston,335,1
 
 var data = d3.csvParse(csv), columns = ["year2014", "year2015", "year2016"];
 
+data.forEach(function(d) {
+    for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+    d.total = t;
+});
+
  // var keys = data.columns.slice(1);
 var keys = columns;
 
