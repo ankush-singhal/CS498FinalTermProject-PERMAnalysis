@@ -57,8 +57,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("y", function(d) { return y1(d[1]); })
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
-        .attr("stroke", "black")
-	.on("mouseout", function(d){ tooltip1.style("display", "none");})
+        .attr("stroke", "black")	
 	.on("mouseover", function() { tooltip1.style("display", null); })
   	.on("mousemove", function(d) {
 		tooltip1
@@ -66,7 +65,8 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
          	.style("top", d3.event.pageY - 200 + "px")
 	  	.style("display", "inline-block")
 		.html("City Name: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
-		});
+		})
+	.on("mouseout", function(d){ tooltip1.style("display", "none");});
 		
 	 g1.append("g")
 			.attr("class", "axis")
