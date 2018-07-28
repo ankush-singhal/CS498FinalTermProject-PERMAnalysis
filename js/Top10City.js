@@ -58,7 +58,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
         .attr("stroke", "black")
-	.on("mouseout", function(){ tooltip1.style("display", "none");})
+	.on("mouseout", function(d){ tooltip1.style("display", "none");})
 	.on("mouseover", function() { tooltip1.style("display", null); })
   	.on("mousemove", function(d) {
 		tooltip1
@@ -86,23 +86,15 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 			.attr("text-anchor", "start")
 			.text("No. of Employees");
 	
-	var legend1 =g1.append("g")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", 10)
-			.attr("text-anchor", "end")
-			.selectAll("g")
-			.data(keys.slice().reverse())
-			.enter().append("g")
-			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-	/*var legend1 = svg1.selectAll(".legend")
+	
+	var legend1 = svg1.selectAll(".legend")
 		.attr("font-family", "sans-serif")
 		.attr("font-size", 10)
 		.attr("text-anchor", "end")      
 		.enter().append("g")
-		.data(keys.slice().reverse())
-		//.attr("class", "legend")
+		.data(keys.slice().reverse())		
 		.enter().append("g")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });*/
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 	legend1.append("rect")
 		.attr("x", width1 - 270)
