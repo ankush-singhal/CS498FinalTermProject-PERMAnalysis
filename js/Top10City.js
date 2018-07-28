@@ -101,7 +101,7 @@ var keys = columns;
 		.attr("text-anchor", "start")
 		.text("No. of Employees");
 
-  var legend = g1.append("g")
+  /*var legend = g1.append("g")
 		.attr("font-family", "sans-serif")
 		.attr("font-size", 10)
 		.attr("text-anchor", "end")
@@ -120,7 +120,7 @@ var keys = columns;
 		.attr("x", width - 24)
 		.attr("y", 9.5)
 		.attr("dy", "0.32em")
-		.text(function(d) { return d; });
+		.text(function(d) { return d; });*/
 		
 	
 rect = g1.selectAll("rect");
