@@ -12,7 +12,7 @@ var y1 = d3.scaleLinear()
     .range([height1, 0]);
 
 var color = d3.scaleOrdinal()
-    .range(["#7fc97f", "#beaed4", "#fdc086", "#ffff99"]);
+    .range(["#9bc7e4", "#8ed07f", "#f7ae54"]);
 
 var keys;
 
@@ -48,7 +48,23 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
         .attr("height", function(d) { return y1(d[0]) - y1(d[1]); })
         .attr("width", x1.bandwidth())
         .attr("stroke", "black");
+		
+	 g.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(d3.axisBottom(x));
 
+	  g.append("g")
+			.attr("class", "axis")
+			.call(d3.axisLeft(y).ticks(null, "s"))
+			.append("text")
+			.attr("x", 2)
+			.attr("y", y(y.ticks().pop()) + 0.5)
+			.attr("dy", "0.32em")
+			.attr("fill", "#000")
+			.attr("font-weight", "bold")
+			.attr("text-anchor", "start")
+			.text("No. of Employees");
     rect = g1.selectAll("rect");
 });
 
@@ -73,5 +89,5 @@ function transitionStep2() {
     .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
     .attr("width", x1.bandwidth() / (keys.length+1))
     .attr("y", function(d) { return y1(d[1] - d[0]); })
-    .attr("stroke", "red");
+    .attr("stroke", "blue");
 }
