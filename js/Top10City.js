@@ -12,13 +12,6 @@ var svg1 = d3.select("div#vis1")
 var g1 = svg1.append("g")
   .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
-
-/*var svg1 = d3.select("#vis1"),
-    margin1 = {top: 20, right: 160, bottom: 35, left: 30},
-    width1 = +svg1.attr("width") - margin1.left - margin1.right,
-    height1 = +svg1.attr("height") - margin1.top - margin1.bottom,
-    g1 = svg1.append("g").attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");*/
-
 var tooltip1 = d3.select("div#vis1").append("div").attr("class", "tooltip")
 
 var x1 = d3.scaleBand()
@@ -77,7 +70,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		
 	 g1.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0," + height1 + ")")
+			.attr("transform", "translate(0," + 445 + ")")
 			.call(d3.axisBottom(x1))
 			.selectAll("text") ;
 
