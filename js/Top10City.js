@@ -100,6 +100,7 @@ var legend = svg.selectAll(".legend")
     rect.transition()
       .attr("y", function(d) { return y(d[1]); })
       .attr("x", function(d) { return x(d.data.city); })
+	.attr("height", function(d) { return y(d[0]) - y(d[1]); })
       .attr("width", x.bandwidth());      
   }
   
