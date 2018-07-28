@@ -92,7 +92,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.attr("text-anchor", "end")      
 		.enter().append("g")
 		.data(keys.slice().reverse())
-		.attr("class", "legend")
+		//.attr("class", "legend")
 		.enter().append("g")
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
