@@ -82,7 +82,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     	.text(function(d){return (d[1] - d[0]) ;})
 	.attr("fill", "#000")
 	.attr("font-weight", "bold");
-		
+	//x-axis
 	 g1.append("g")
 			.attr("class", "axis")
 			.attr("transform", "translate(0," + 445 + ")")
@@ -97,7 +97,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 			.attr("text-anchor", "center")
 			.attr("fill", "black")
 			.text("City Name");
-
+	//y-axis
 	  g1.append("g")
 			.attr("class", "axis")
 			.call(d3.axisLeft(y1).ticks(null, "s"))
