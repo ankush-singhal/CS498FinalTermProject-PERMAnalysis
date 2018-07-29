@@ -1,4 +1,4 @@
-var margin1 = {top: 20, right: 160, bottom: 35, left: 30};
+var margin1 = {top: 20, right: 160, bottom: 35, left: 100};
 
 var svg1 = d3.select("div#vis1")
   .append("svg")
@@ -87,7 +87,16 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 			.attr("class", "axis")
 			.attr("transform", "translate(0," + 445 + ")")
 			.call(d3.axisBottom(x1))
-			.selectAll("text") ;
+			.selectAll("text")
+			.append("text")			
+			.attr("x", 300)
+			.attr("y", 0)
+			.attr("dx", "0.32em")
+			.attr("fill", "#000")
+			.attr("font-weight", "bold")
+			.attr("text-anchor", "center")
+			.attr("fill", "black")
+			.text("City Name");
 
 	  g1.append("g")
 			.attr("class", "axis")
@@ -95,7 +104,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 			.append("text")
 			.attr("transform", "rotate(-90)")	
      			.attr("y", -50)
-			.attr("x",0 - (height / 4))
+			.attr("x",0 - (height1 / 4))
         		.attr("dy", "0.71em")
         		.attr("text-anchor", "center")
 			.attr("fill", "black")
