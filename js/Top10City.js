@@ -93,14 +93,19 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 			.attr("class", "axis")
 			.call(d3.axisLeft(y1).ticks(null, "s"))
 			.append("text")
-			.attr("transform", "rotate(-90)")
-			.attr("x", 2)
+			.attr("transform", "rotate(-90)")	
+     			.attr("y", -50)
+			.attr("x",0 - (height / 4))
+        		.attr("dy", "0.71em")
+        		.attr("text-anchor", "center")
+			.attr("fill", "black")
+			/*.attr("x", 2)
 			.attr("y", y1(y1.ticks().pop()) + 0.5)
 			.attr("dy", "0.32em")
 			.attr("fill", "#000")
 			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
-			.text("No. of Employees");
+			.attr("text-anchor", "start")*/
+			.text("No. of Employees - (K)");
 	
 	
 	var legend1 = svg1.selectAll(".legend")
