@@ -141,6 +141,10 @@ function transitionStep1() {
     .attr("y", function(d) { return y1(d[1]); })
     .attr("x", function(d) { return x1(d.data.city); })
     .attr("width", x1.bandwidth());
+   
+     label.transition()
+    .attr("x", function(d) { return x1(d.data.city)+ 10; })
+    .attr("y",function(d) { return y1(d[1]); });
 }
 
 function transitionStep2() {
@@ -151,7 +155,6 @@ function transitionStep2() {
     .attr("y", function(d) { return y1(d[1] - d[0]); });
 	
   label.transition()
-    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
-    .attr("width", x1.bandwidth() / (keys.length+1))
+    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })     
     .attr("y", function(d) { return y1(d[1] - d[0]); });
 }
