@@ -49,8 +49,9 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     .selectAll("g")
     .data(stackData)
     .enter().append("g")
-     .attr("fill", function(d) { return z(d.key); })
-    .selectAll("rect")
+    .attr("fill", function(d) { return z(d.key); });
+	
+    g1.selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
         .attr("x", function(d) { return x1(d.data.city); })
@@ -74,7 +75,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     	.enter().append("text")
     	.attr("x", function(d) { return x1(d.data.city); })
     	.attr("y",function(d) { return y1(d[1]); })
-    	.text(function(d){return y1(d[1])-y1(d[0]);});
+    	.text(function(d){return y1(d[1]) - y1(d[0]);});
 		
 	 g1.append("g")
 			.attr("class", "axis")
