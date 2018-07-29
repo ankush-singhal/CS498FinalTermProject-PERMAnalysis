@@ -143,13 +143,16 @@ function transitionStep1() {
 }
 
 function transitionStep2() {
-    rect.transition()
-    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
-    .attr("width", x1.bandwidth() / (keys.length+1))
-    .attr("y", function(d) { return y1(d[1] - d[0]); });
 	
     label.transition()
     .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
     .attr("width", x1.bandwidth() / (keys.length+1))
     .attr("y", function(d) { return y1(d[1] - d[0]); });
+	
+    rect.transition()
+    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
+    .attr("width", x1.bandwidth() / (keys.length+1))
+    .attr("y", function(d) { return y1(d[1] - d[0]); });
+	
+    
 }
