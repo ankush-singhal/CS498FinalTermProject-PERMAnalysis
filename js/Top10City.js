@@ -78,7 +78,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     	.enter().append("text")
     	.attr("x", function(d) { return x1(d.data.city); })
     	.attr("y",function(d) { return y1(d[1]); })
-    	.text(function(d){return d[1]) - d[1] ;})
+    	.text(function(d){return (d[1] - d[0]) ;})
 	.attr("fill", "#000")
 	.attr("font-weight", "bold");
 		
