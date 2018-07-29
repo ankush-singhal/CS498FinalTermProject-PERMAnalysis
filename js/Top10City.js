@@ -80,7 +80,9 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
     	.attr("y",function(d) { return y1(d[1]); })
     	.text(function(d){return (d[1] - d[0]) ;})
 	.attr("fill", "#000")
-	.attr("font-weight", "bold");
+	.attr("font-weight", "bold")
+	.attr("position", "absolute")
+        .attr("text-align", "center");
 		
 	 g1.append("g")
 			.attr("class", "axis")
