@@ -76,6 +76,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.selectAll("text")
         .data(function(d) { return d; })
     	.enter().append("text")
+	.attr("class","label")
     	.attr("x", function(d) { return x1(d.data.city)+ 10; })
     	.attr("y",function(d) { return y1(d[1]); })
     	.text(function(d){return (d[1] - d[0]) ;})
@@ -124,7 +125,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.text(function(d) { return d; });
 	
     rect = g1.selectAll("rect");
-    label = g1.selectAll("text");
+    label = g1.selectAll(".label");
 });
 
 d3.selectAll("input")
@@ -144,15 +145,13 @@ function transitionStep1() {
 
 function transitionStep2() {
 	
-    label.transition()
+   rect.transition()
     .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
     .attr("width", x1.bandwidth() / (keys.length+1))
     .attr("y", function(d) { return y1(d[1] - d[0]); });
 	
-    rect.transition()
+  label.transition()
     .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
     .attr("width", x1.bandwidth() / (keys.length+1))
     .attr("y", function(d) { return y1(d[1] - d[0]); });
-	
-    
 }
