@@ -66,13 +66,21 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	  	.style("display", "inline-block")
 		.html("City Name: <b>"+d.data.city+"</b>"+ "<br>" + "Number of Employees: " +"<b>"+(d[1]-d[0]));    			
 		})
-	.on("mouseout", function(d){ tooltip1.style("display", "none");})
+	.on("mouseout", function(d){ tooltip1.style("display", "none");});
+	
+	g1.append("g")
+   	 .selectAll("g")
+    	.data(stackData)
+   	.enter().append("g")
+   	.attr("fill", function(d) { return z(d.key); })
 	.selectAll("text")
         .data(function(d) { return d; })
     	.enter().append("text")
     	.attr("x", function(d) { return x1(d.data.city); })
     	.attr("y",function(d) { return y1(d[1]); })
-    	.text(function(d){return y1(d[0]) - y1(d[1]);});
+    	.text(function(d){return d[1]) - d[1] ;})
+	.attr("fill", "#000")
+	.attr("font-weight", "bold");
 		
 	 g1.append("g")
 			.attr("class", "axis")
