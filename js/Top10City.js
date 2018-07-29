@@ -69,20 +69,18 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 	.on("mouseout", function(d){ tooltip1.style("display", "none");});
 	
 	g1.append("g")
-   	 .selectAll("g")
+   	.selectAll("g")
     	.data(stackData)
    	.enter().append("g")
    	.attr("fill", function(d) { return z(d.key); })
 	.selectAll("text")
         .data(function(d) { return d; })
     	.enter().append("text")
-    	.attr("x", function(d) { return x1(d.data.city); })
+    	.attr("x", function(d) { return x1(d.data.city)+ 10; })
     	.attr("y",function(d) { return y1(d[1]); })
     	.text(function(d){return (d[1] - d[0]) ;})
 	.attr("fill", "#000")
-	.attr("font-weight", "bold")
-	.attr("position", "absolute")
-        .attr("text-align", "center");
+	.attr("font-weight", "bold");
 		
 	 g1.append("g")
 			.attr("class", "axis")
@@ -126,6 +124,7 @@ d3.csv("/CS498FinalTermProject-PERMAnalysis/data/top10cities.csv", function(d, i
 		.text(function(d) { return d; });
 	
     rect = g1.selectAll("rect");
+    label = g1.selectAll("text");
 });
 
 d3.selectAll("input")
@@ -140,14 +139,17 @@ function transitionStep1() {
     rect.transition()
     .attr("y", function(d) { return y1(d[1]); })
     .attr("x", function(d) { return x1(d.data.city); })
-    .attr("width", x1.bandwidth())
-    .attr("stroke", "green");
+    .attr("width", x1.bandwidth());
 }
 
 function transitionStep2() {
     rect.transition()
     .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
     .attr("width", x1.bandwidth() / (keys.length+1))
-    .attr("y", function(d) { return y1(d[1] - d[0]); })
-    .attr("stroke", "blue");
+    .attr("y", function(d) { return y1(d[1] - d[0]); });
+	
+    label.transition()
+    .attr("x", function(d, i) { return x1(d.data.city) + x1.bandwidth() / (keys.length+1) * d.keyIdx; })
+    .attr("width", x1.bandwidth() / (keys.length+1))
+    .attr("y", function(d) { return y1(d[1] - d[0]); });
 }
